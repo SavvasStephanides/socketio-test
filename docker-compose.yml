@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  server:
+    image: node:19-alpine3.15
+    volumes:
+      - ./apps/server:/server
+    working_dir: /server
+    ports:
+      - 3000:3000
+    command: yarn start
+
+  client:
+    image: nginx:1.23.2-alpine
+    volumes:
+      - ./apps/client:/usr/share/nginx/html
+    ports:
+      - 3001:80
